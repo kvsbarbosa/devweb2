@@ -15,15 +15,12 @@ services:
 
     mult1:
         build: mult
-        container_name: mult1
 
     mult2:
         build: mult
-        container_name: mult2
 
     mult3:
         build: mult
-        container_name: mult3
 
     nginx:
         container_name: nginx
