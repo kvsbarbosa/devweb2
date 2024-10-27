@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 # copy the rest of our application
 COPY . .
 # run the application
-CMD ["fastapi", "run", "app/app.py", "--port", "5000"]
+CMD ["fastapi", "run", "app.py", "--port", "5000"]
