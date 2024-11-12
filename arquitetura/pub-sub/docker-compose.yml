@@ -20,6 +20,8 @@ services:
   notifier-app:
     build: notifier-app
     container_name: notifier-app
+    volumes:
+      - ./appdata:/appdata
     depends_on:
       - kafka1
 
