@@ -27,14 +27,6 @@ services:
     depends_on:
       - kafka1
 
-  text:
-    build: text-app
-    container_name: text
-    volumes:
-      - ./appdata:/appdata
-    depends_on:
-      - kafka1
-
   zookeeper:
     image: zookeeper:3.4.9
     hostname: zookeeper
