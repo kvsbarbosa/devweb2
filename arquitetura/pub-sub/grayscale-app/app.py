@@ -1,5 +1,5 @@
 from PIL import Image, ImageOps
-from confluent_kafka import Consumer, KafkaError
+from confluent_kafka import Consumer, KafkaError, Producer
 import json
 import os
 from time import sleep
@@ -20,6 +20,19 @@ def create_grayscale(path_file):
 
     name, ext = os.path.splitext(filename)
     gray_image.save(output_folder + name + NEW + ext)
+
+    publish_notification("grayscaled", filename)
+
+
+def publish_notification(operation, filename):
+    topic = '/notificacao'
+    message = {
+        "filename": filename,
+        "operation": operation
+    }
+    producer = Producer({'bootstrap.servers': 'kafka1:19091,kafka2:19092,kafka3:19093'})
+    producer.produce(topic, value=json.dumps(message))
+    producer.flush()
 
 #sleep(30)
 ### Consumer
