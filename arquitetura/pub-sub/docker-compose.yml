@@ -17,13 +17,16 @@ services:
     depends_on:
       - kafka1
 
-  notifier-app:
+  notifier:
     build: notifier-app
     container_name: notifier-app
     volumes:
       - ./appdata:/appdata
     depends_on:
       - kafka1
+      - kafka2
+      - kafka3
+
 
   upload:
     build: upload-app
