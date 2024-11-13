@@ -24,8 +24,6 @@ services:
       - ./appdata:/appdata
     depends_on:
       - kafka1
-      - kafka2
-      - kafka3
 
 
   upload:
