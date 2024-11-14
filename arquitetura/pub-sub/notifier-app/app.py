@@ -23,7 +23,7 @@ c = Consumer({
         'default.topic.config': {'auto.offset.reset': 'smallest'}
 })
 
-c.subscribe(['/notificacao'])
+c.subscribe(['notificacao'])
 
 try:
     while True:
@@ -40,10 +40,11 @@ try:
         data = json.loads(msg.value().decode('utf-8'))
         filename = data.get('filename')
         operation = data.get('operation')
+        logging.warning(f"READING {filename}")
         notification_message = f'O arquivo {filename} foi {operation}.'
-        logging.info(f"Notificação: {notification_message}")
-
         asyncio.run(send_telegram_message(notification_message))
+        logging.warning(f"ENDING {filename}")
+
 
 except KeyboardInterrupt:
     pass
