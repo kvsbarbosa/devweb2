@@ -25,14 +25,18 @@ def create_grayscale(path_file):
 
 
 def publish_notification(operation, filename):
-    topic = '/notificacao'
+    topic = 'notificacao'
     message = {
         "filename": filename,
         "operation": operation
     }
     producer = Producer({'bootstrap.servers': 'kafka1:19091,kafka2:19092,kafka3:19093'})
-    producer.produce(topic, value=json.dumps(message))
-    producer.flush()
+
+    try:
+        producer.produce(topic, value=json.dumps(message))
+        producer.flush()
+    except Exception as e:
+        logging.error(f"Erro ao enviar mensagem para o Kafka: {e}")
 
 #sleep(30)
 ### Consumer

@@ -26,7 +26,7 @@ def create_rotate(path_file):
 
 
 def publish_notification(operation, filename):
-    topic = '/notificacao'
+    topic = 'notificacao'
     message = {
         "filename": filename,
         "operation": operation
